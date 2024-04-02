@@ -3,6 +3,9 @@ import { createRef } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
 
 const Stack = createStackNavigator();
 
@@ -38,10 +41,22 @@ function ScreenB({ navigation }) {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Drawer.Navigator
+        screenOptions ={
+          {
+            drawerType: 'slide',
+            gestureEnabled: true,
+            headerTitleAlign: 'center',
+          }
+        }
+      >
+        <Drawer.Screen name='Screen_A' component={ScreenA}></Drawer.Screen>
+        <Drawer.Screen name='Screen_B' component={ScreenB}></Drawer.Screen>
+      </Drawer.Navigator>
+      {/* <Stack.Navigator>
         <Stack.Screen name="Screen_A" component={ScreenA}></Stack.Screen>
         <Stack.Screen name="Screen_B" component={ScreenB}></Stack.Screen>
-      </Stack.Navigator>
+      </Stack.Navigator> */}
     </NavigationContainer>
   );
 }
