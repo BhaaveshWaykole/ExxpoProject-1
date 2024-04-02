@@ -5,21 +5,35 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 const Stack = createStackNavigator();
-function ScreenA (){
-  <View>
-    <Text style={styles.text}>ScreenA</Text>
-    <Pressable>
-      <Text>Go to B</Text>
-    </Pressable>
-  </View>
+
+function ScreenA({ navigation }) {
+  function onPressHandler() {
+    // navigation.replace('Screen_B');
+    navigation.navigate('Screen_B');
+  }
+  return (
+    <View style={styles.body}>
+      <Text style={styles.text}>Screen A</Text>
+      <Pressable style={styles.button} onPress={onPressHandler}>
+        <Text style={styles.text}>Go To Screen B</Text>
+      </Pressable>
+    </View>
+  );
 }
-function ScreenB (){
-  <View>
-    <Text style={styles.text}>ScreenB</Text>
-    <Pressable>
-      <Text>Go to A</Text>
-    </Pressable>
-  </View>
+
+function ScreenB({ navigation }) {
+  function onPressHandler() {
+    // navigation.navigate('Screen_A');/
+    navigation.goBack();
+  }
+  return (
+    <View style={styles.body}>
+      <Text style={styles.text}>Screen B</Text>
+      <Pressable style={styles.button} onPress={onPressHandler}>
+        <Text style={styles.text}>Go To Screen A</Text>
+      </Pressable>
+    </View>
+  )
 }
 export default function App() {
   return (
@@ -33,10 +47,17 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  body: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  text: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    margin: 10
+  },
+  button: {
+    backgroundColor: '#0f0'
+  }
 });
