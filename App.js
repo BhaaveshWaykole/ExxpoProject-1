@@ -4,45 +4,18 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { ScreenA } from './src/screen/screenA.js'
+import { ScreenB } from './src/screen/screenB.js'
 
 const Drawer = createDrawerNavigator();
 
 const Stack = createStackNavigator();
 
-function ScreenA({ navigation }) {
-  function onPressHandler() {
-    // navigation.replace('Screen_B');
-    navigation.navigate('Screen_B');
-  }
-  return (
-    <View style={styles.body}>
-      <Text style={styles.text}>Screen A</Text>
-      <Pressable style={styles.button} onPress={onPressHandler}>
-        <Text style={styles.text}>Go To Screen B</Text>
-      </Pressable>
-    </View>
-  );
-}
-
-function ScreenB({ navigation }) {
-  function onPressHandler() {
-    // navigation.navigate('Screen_A');/
-    navigation.goBack();
-  }
-  return (
-    <View style={styles.body}>
-      <Text style={styles.text}>Screen B</Text>
-      <Pressable style={styles.button} onPress={onPressHandler}>
-        <Text style={styles.text}>Go To Screen A</Text>
-      </Pressable>
-    </View>
-  )
-}
 export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator
-        screenOptions ={
+        screenOptions={
           {
             drawerType: 'slide',
             gestureEnabled: true,
